@@ -9,25 +9,15 @@ using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using CsvHelper.TypeConversion;
 using System.Globalization;
+using System.Collections;
 
-namespace Users
+namespace Experis_movie
 {
     public class Users
     {
-
-
         public Users(int id, string name, string viewed, string purchased)
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
-                HasHeaderRecord = false,
-            };
-            using (var reader = new StreamReader(@"F:\CSV\Users.txt"))
-            using (var csv = new CsvReader(reader, config))
-            {
-                var records = csv.GetRecords<Users>();
-            }
-                      
+                                
             this.UserId = id;
             this.UserName = name;
             this.UserViewed = viewed;

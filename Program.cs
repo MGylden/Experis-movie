@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace movie_recommendations
+namespace Experis_movie
 {
     public class Movie
     {
@@ -8,7 +8,7 @@ namespace movie_recommendations
         {
             {
                 string[] reader = System.IO.File.ReadAllLines(@"F:\CSV\Users.txt");
-                List<Users.Users> userList = new List<Users.Users>();
+                List<Users> userList = new List<Users>();
 
 
 
@@ -19,10 +19,10 @@ namespace movie_recommendations
                     for (int j = 0; j < stringArray.Length - 1; j++)
                     {
 
-                        Users.Users users = new(Convert.ToInt32(stringArray[0]), stringArray[1], stringArray[2], stringArray[3]);
+                        Users users = new(Convert.ToInt32(stringArray[0]), stringArray[1], stringArray[2], stringArray[3]);
                         userList.Add(users);
-                        
-                        List<Users.Users> userPurchased = userList
+
+                        List<Users> userPurchased = userList[3];
                         
                         //string[] stringArray2 = stringArray[2].Split(";");
                         

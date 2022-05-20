@@ -17,20 +17,6 @@ namespace Experis_movie
 
         public Products(int id, string name, int year, string keyword1, string keyword2, string keyword3, string keyword4, string keyword5, double rating, double price)
         {
-
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-            {
-                HasHeaderRecord = false,
-            };
-            using (var reader = new StreamReader(@"F:\CSV\Products.txt"))
-            using (var csv = new CsvReader(reader, config))
-            {
-                var records = csv.GetRecords<Products>();
-            }
-
-
-
-
             this.ProductId = Convert.ToInt32(id);
             this.ProductName = name;
             this.ProductYear = Convert.ToInt32(year);
@@ -63,42 +49,20 @@ namespace Experis_movie
         [Index(9)]
         public double ProductPrice { get; set; }
 
+        public List<string> getGenresToList()
+        {
+            List<string> genres = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(this.ProductKeyword1)) genres.Add(this.ProductKeyword1);
+            if (!string.IsNullOrWhiteSpace(this.ProductKeyword2)) genres.Add(this.ProductKeyword2);
+            if (!string.IsNullOrWhiteSpace(this.ProductKeyword3)) genres.Add(this.ProductKeyword3);
+            if (!string.IsNullOrWhiteSpace(this.ProductKeyword4)) genres.Add(this.ProductKeyword4);
+            if (!string.IsNullOrWhiteSpace(this.ProductKeyword5)) genres.Add(this.ProductKeyword5);
+
+            return genres;
 
 
-        //int id, string name, int year, string keyword1, string keyword2, string keyword3, string keyword4, string keyword5, double rating, double price
-
-
-
-        /* public int id, year;
-     public double rating, price;
-     public string name, keyword1, keyword2, keyword3, keyword4, keyword5;
-     public Products(string data)
-     {
-
-         string[] data = rowData.Split(",");
-
-         this.id = data[0];
-         this.name = data[1];
-         this.year = data[2]);
-         this.keyword1 = data[3]; */
-
-
-
-        /* public static List<Products> listProducts()
-         {
-             string[] reader = System.IO.File.ReadAllLines(@"F:\CSV\Products.txt");
-             List<Products> productList = new List<Products>();
-
-             for (int i = 0; i < reader.Length; i++)
-             {
-                 Products pl = new(reader.GetValue(0), reader.GetValue(1), reader.GetValue(2), reader.GetValue(3), reader.GetValue(4), reader.GetValue(5), reader.GetValue(6), reader.GetValue(7), reader.GetValue(8), reader.GetValue(9));
-                 productList.Add(pl);
-
-
-             }
-
-             return productList; 
-         }*/
+        }
 
 
     }
