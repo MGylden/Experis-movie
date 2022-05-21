@@ -13,22 +13,21 @@ using System.Globalization;
 
 namespace Experis_movie.Models
 {
-    internal class CurrentUserSession
+    public class CurrentUserSession
     {
-
-
         public CurrentUserSession(string currentUserId, string currentProductId)
         {
-
             this.currentUserId = currentUserId;
             this.currentProductId = currentProductId;            
-
         }
 
         [Index(0)]
         public string currentUserId { get; set; }
         [Index(1)]
         public string currentProductId { get; set; }
-        
+     
+        public CurrentUserSession()
+        {
+        }
     }
 }

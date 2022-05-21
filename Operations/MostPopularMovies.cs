@@ -10,6 +10,7 @@ using CsvHelper.Configuration.Attributes;
 using CsvHelper.TypeConversion;
 using System.Globalization;
 using System.Collections;
+using Experis_movie.Models;
 
 
 namespace Experis_movie
@@ -62,6 +63,90 @@ namespace Experis_movie
             var sortedDict = from entry in dict orderby entry.Value descending select entry;
             return dict = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
+
+        public static List<Products> ListOfRecommendedMoviesByUnitsSoldAndUserReviews(List<Users> users, List<Products> products)
+        { 
+            List<Products> moviesOnlyWithHighRating = new List<Products>();
+            List<Products> moviesWithUnitsSold = new List<Products>();
+
+            for (int y = 0; y < products.Count; y++)
+            {
+                if (products.ElementAt(y).ProductRating > 3.5)
+                {
+                    moviesOnlyWithHighRating.Add(products.ElementAt(y));
+                }
+            }
+
+            users.ForEach(user =>
+            {
+                user.SplitUserPurchased().ForEach(productId =>
+                {
+                    products.ForEach(product =>
+                    {
+                        if (productId.Replace(" ", "").Equals(product.ProductId))
+                        {
+                            moviesWithUnitsSold.Add(product);
+                        }
+                    });
+                });
+            });
+
+            List<Products> movieRecommendationList = moviesWithUnitsSold.Union(moviesOnlyWithHighRating).ToList();
+            return movieRecommendationList;
+        }
+        public static Dictionary<string,List<Products>> RecommendedMoviesOnUserSession(List<Users> users, List<Products> products, List<CurrentUserSession> currentUserSession)
+        {
+            Dictionary<string, List<Products>> dict = new Dictionary<string,List<Products>>();
+
+            currentUserSession.ForEach(userSession =>
+            {
+                Products currentProduct = new();
+                Users currentUser = new();
+                List<Products> tempProducts = new List<Products>();
+
+                users.ForEach(user =>
+                {
+                    if (userSession.currentUserId.Equals(user.UserId))
+                    {
+                        currentUser = user;
+                    }
+                    
+                });
+                products.ForEach(product =>
+                {
+                    if (userSession.currentProductId.Equals(product.ProductName))
+                    {
+                        currentProduct = product;
+                        
+                    }
+                });
+                
+                products.ForEach(product =>
+                {
+                    int counter = 0;
+                    currentProduct.getGenresToList().ForEach(genre =>
+                    {
+                        product.getGenresToList().ForEach(genreAllProducts =>
+                        {
+                            if(genre.Equals(genreAllProducts))
+                            {
+                               counter++; 
+                            }
+
+                        });
+                    });
+
+                    if(counter >= 3)
+                    {
+                        tempProducts.Add(product);
+                    }
+                });
+
+                dict.Add(currentUser.UserName, tempProducts);
+            });
+            return dict;
+        }
     }
+
 }
 

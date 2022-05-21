@@ -64,6 +64,16 @@ namespace Experis_movie
 
         }
 
+        public Products()
+        {
 
+        }
+        public override string ToString()
+        {
+            string str = $"{ProductId}--{ProductName}--{ProductYear}-{ProductRating}--{ProductPrice}" + 
+                $"{ProductKeyword1}-{ProductKeyword2}-{ProductKeyword3}-{ProductKeyword4}-{ProductKeyword5}";
+            return str;
+        }
     }
+ 
 }

@@ -32,6 +32,9 @@ namespace Experis_movie
         public string UserViewed { get; set; }
         [Index(3)]
         public string UserPurchased { get; set; }
+
+
+
         public List<string> UserPurchasedSplit { get; set; }
 
         public List<string> SplitUserPurchased()
@@ -43,40 +46,9 @@ namespace Experis_movie
                 split.Add(item);
             return split;
         }
-       
-    }
-}
-
-
-/*public static List<Users> Users1()
-{
-    string[] reader = System.IO.File.ReadAllLines(@"F:\CSV\Users.txt");
-    List<Users> userList = new List<Users>();
-
-
-
-    for (int i = 0; i < reader.Length; i++)
-    {
-        string[] stringArray = reader[i].Split(",");
-
-        for (int y = 0; y < stringArray.Length - 1; y++)
+       public Users()
         {
 
-            Users users =new(Convert.ToInt32(stringArray[0]), stringArray[1], stringArray[2], stringArray[3]);
-            userList.Add(users);
         }
     }
-    return userList; } */
-
-
-
-//reader.GetValue(0), reader.GetValue(1), reader.GetValue(2), reader.GetValue(3)):
-
-
-
-
-
-
-
-
-
+}

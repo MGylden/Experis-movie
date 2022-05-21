@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Models",
+    "\\Operations",
+    "\\Resources"
   ],
+  "SelectedNode": "\\Operations\\MostPopularMovies.cs",
   "PreviewInSolutionExplorer": false
 }
