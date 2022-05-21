@@ -19,6 +19,7 @@ namespace Experis_movie.Operations
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = false,
+                MissingFieldFound = null
             };
             return config;
         }
@@ -26,7 +27,7 @@ namespace Experis_movie.Operations
         public static List<Users> ParseCsvToUsers()
         {
             CsvConfiguration config = Config();
-            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\Experis-movie\Resources\Users.txt"))
+            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\Users.txt"))
 
             using (var csv = new CsvReader(reader, config))
             {
@@ -37,10 +38,9 @@ namespace Experis_movie.Operations
         public static List<Products> ParseToProducts()
         {
             CsvConfiguration config = Config();
-            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\Experis-movie\Resources\Products.txt"))
+            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\Products.txt"))
             using (var csv = new CsvReader(reader, config))
             {
-                Console.WriteLine("test");
                 var records = csv.GetRecords<Products>();
                 return records.ToList();
             }
@@ -49,7 +49,7 @@ namespace Experis_movie.Operations
         public static List<CurrentUserSession> ParseToUserssession()
         {
             CsvConfiguration config = Config();
-            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\Experis-movie\Resources\CurrentUserSession.txt"))
+            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\CurrentUserSession.txt"))
             using (var csv = new CsvReader(reader, config))
             {
                 var records = csv.GetRecords<CurrentUserSession>();

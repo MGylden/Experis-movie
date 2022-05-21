@@ -136,7 +136,7 @@ namespace Experis_movie
                         });
                     });
 
-                    if(counter >= 3)
+                    if(counter >= 2)
                     {
                         tempProducts.Add(product);
                     }

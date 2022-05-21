@@ -26,11 +26,20 @@ namespace Experis_movie
             catch (Exception e)
             {
                 //If this fails, exit no matter what...
-                Console.WriteLine("Something failed.... \n" + e.StackTrace);
+                Console.WriteLine("Something failed.... \n" + e.Message);
                 Console.WriteLine("Exiting after any button pressed....");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
+            foreach (var item in products)
+            {
+                Console.WriteLine(item.ProductRating);
+            }
+            foreach (var item in currentUserSessions)
+            {
+                Console.WriteLine(item.currentProductId);
+            }
+
             listOfMostPopularMovies = mostPopularMovies.mostPopularMoviesPurchased(users, products);
             Console.WriteLine("Movie recommendations based on units sold:");
             foreach (var item in listOfMostPopularMovies.Take(4))
