@@ -5567,19 +5567,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mathi\\.nuget\\packages\\": {}
+    "C:\\Users\\Mathi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mathi\\source\\repos\\Experis movie\\Experis movie\\Experis movie.csproj",
+      "projectUniqueName": "C:\\Users\\Mathi\\source\\repos\\Experis-movie\\Experis movie.csproj",
       "projectName": "Experis movie",
-      "projectPath": "C:\\Users\\Mathi\\source\\repos\\Experis movie\\Experis movie\\Experis movie.csproj",
+      "projectPath": "C:\\Users\\Mathi\\source\\repos\\Experis-movie\\Experis movie.csproj",
       "packagesPath": "C:\\Users\\Mathi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mathi\\source\\repos\\Experis movie\\Experis movie\\obj\\",
+      "outputPath": "C:\\Users\\Mathi\\source\\repos\\Experis-movie\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Mathi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5629,7 +5634,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
