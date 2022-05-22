@@ -31,14 +31,11 @@ namespace Experis_movie
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            foreach (var item in products)
+            foreach (var item in RecommendedMoviesOnUserSession)
             {
-                Console.WriteLine(item.ProductRating);
+                Console.WriteLine(item);
             }
-            foreach (var item in currentUserSessions)
-            {
-                Console.WriteLine(item.currentProductId);
-            }
+           
 
             listOfMostPopularMovies = mostPopularMovies.mostPopularMoviesPurchased(users, products);
             Console.WriteLine("Movie recommendations based on units sold:");
