@@ -41,31 +41,32 @@ namespace Experis_movie
             //Take can be changed if desired to show more from the list (etc. the 5 most popular movies instead of 3)
             foreach (var item in listOfMostPopularMovies.Take(3))
             {
-                Console.WriteLine($"Movie: {item.Key}------" +
-                                  $"Sold amount: {item.Value}");
+                Console.WriteLine($"Movie: {item.Key}. \t " +
+                                  $"Times Watched: {item.Value}");
             }
             Console.ReadKey();
             Console.WriteLine("\n");
 
             //Prints 3 highest rated movies descending
             listmostPopularMoviesByRating = mostPopularMovies.mostPopularMoviesByRating(products);
-            Console.WriteLine("\n\nMovie recommendations based on user ratings:");
+            Console.WriteLine("\nMovie recommendations based on user ratings:");
             //Take can be changed if desired to show more from the list (etc. the 5 highest rated movies instead of 3)
             foreach (var item in listmostPopularMoviesByRating.Take(3))
             {
-                Console.WriteLine($"Movie: {item.Key}" +
-                                  $"user rating: {item.Value}");
+                Console.WriteLine($"Movie: {item.Key}. \t " +
+                                  $"User rating: {item.Value}");
             }
 
             Console.ReadKey();
             Console.WriteLine("\n");
 
             ListOfRecommendedMoviesByUnitsSoldAndUserReviews = mostPopularMovies.ListOfRecommendedMoviesByUnitsSoldAndUserReviews(users, products);
-            Console.WriteLine("\n\nMovie recommendations based on user ratings and Most Popular Movies:");
+            Console.WriteLine("\nMovie recommendations based on user ratings and Most Popular Movies:");
             //Take can be changed if desired to show more from the list (etc. the 5 highest rated movies instead of 3)
             foreach (var item in ListOfRecommendedMoviesByUnitsSoldAndUserReviews.Take(3))
             {
-                Console.WriteLine($"Movie: {item.ProductName}"+$" User Rating:{item.ProductRating}");
+                Console.WriteLine($"Movie: {item.ProductName}. \t " +
+                                  $"User Rating: {item.ProductRating}");
             }
 
             Console.ReadKey();
@@ -76,7 +77,7 @@ namespace Experis_movie
             RecommendedMoviesOnUserSession = mostPopularMovies.RecommendedMoviesOnUserSession(users, products, currentUserSessions);
             foreach (var recommendation in RecommendedMoviesOnUserSession.Keys)
             {
-                Console.WriteLine($"Movie recommendations for: {recommendation}");
+                Console.WriteLine($"\nMovie recommendations for: {recommendation}");
                 foreach (var product in RecommendedMoviesOnUserSession[recommendation])
                 {
                     Console.WriteLine($"Movie: {product.ProductName}");
