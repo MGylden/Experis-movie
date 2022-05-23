@@ -15,16 +15,16 @@ namespace Experis_movie.Models
 {
     public class CurrentUserSession
     {
-        public CurrentUserSession(string currentUserId, string currentProductId)
+        public CurrentUserSession(int currentUserId, int currentProductId)
         {
             this.currentUserId = currentUserId;
             this.currentProductId = currentProductId;            
         }
 
         [Index(0)]
-        public string currentUserId { get; set; }
+        public int currentUserId { get; set; }
         [Index(1)]
-        public string currentProductId { get; set; }
+        public int currentProductId { get; set; }
      
         public CurrentUserSession()
         {

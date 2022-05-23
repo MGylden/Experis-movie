@@ -21,7 +21,10 @@ namespace Experis_movie
             this.UserName = name;
             this.UserViewed = viewed;
             this.UserPurchased = purchased;
-            this.UserPurchasedSplit = SplitUserPurchased();
+        }
+        public Users()
+        {
+
         }
 
         [Index(0)]
@@ -33,22 +36,20 @@ namespace Experis_movie
         [Index(3)]
         public string UserPurchased { get; set; }
 
-
-
         public List<string> UserPurchasedSplit { get; set; }
 
-        public List<string> SplitUserPurchased()
+        //Method which split the values and returns as a list
+        public List<string> listOfMovieIds()
         {
-            List<string> split = new List<string>();
-            string[] stringArray = this.UserPurchased.Split(';');
+            string[] tempArray = UserPurchased.Split(';');
+            List<string> tempList = new List<string>();
 
-            foreach (var item in stringArray)
-                split.Add(item);
-            return split;
+            foreach (string movieId in tempArray)
+            {
+                tempList.Add(movieId.Replace(" ",""));
+            }
+            return tempList;
         }
-       public Users()
-        {
 
-        }
     }
 }

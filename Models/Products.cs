@@ -49,6 +49,7 @@ namespace Experis_movie
         [Index(9)]
         public double ProductPrice { get; set; }
 
+        // The follow method checks for null or whitespace and return keywords as a list
         public List<string> getGenresToList()
         {
             List<string> genres = new List<string>();
@@ -67,12 +68,6 @@ namespace Experis_movie
         public Products()
         {
 
-        }
-        public override string ToString()
-        {
-            string str = $"{ProductId}--{ProductName}--{ProductYear}-{ProductRating}--{ProductPrice}" + 
-                $"{ProductKeyword1}-{ProductKeyword2}-{ProductKeyword3}-{ProductKeyword4}-{ProductKeyword5}";
-            return str;
         }
     }
  

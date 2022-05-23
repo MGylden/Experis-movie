@@ -17,6 +17,7 @@ namespace Experis_movie
 {
     internal class mostPopularMovies
     {
+        //The following method takes a list of Users and Products, and returns a dictionary based on purchases from Users.
         public static Dictionary<string, int> mostPopularMoviesPurchased(List<Users> users, List<Products> products)
         {
             Dictionary<string, int> dict = new Dictionary<string, int>();
@@ -25,7 +26,7 @@ namespace Experis_movie
             {
                 foreach (Products movie in products)
                 {
-                    foreach (string value in user.UserPurchasedSplit)
+                    foreach (string value in user.listOfMovieIds())
                     {
                         if (value.Replace(" ", "").Equals(movie.ProductId.ToString()))
                         {
@@ -45,6 +46,7 @@ namespace Experis_movie
             return dict = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
+        //The following method takes a list of Products, and returns a dictionary based on Rating.
         public static Dictionary<string, double> mostPopularMoviesByRating(List<Products> products)
         {
             Dictionary<string, double> dict = new Dictionary<string, double>();
@@ -64,6 +66,7 @@ namespace Experis_movie
             return dict = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
+        //The following method takes a list of Users and Products, and returns a dictionary based on purchases from Users.
         public static List<Products> ListOfRecommendedMoviesByUnitsSoldAndUserReviews(List<Users> users, List<Products> products)
         { 
             List<Products> moviesOnlyWithHighRating = new List<Products>();
@@ -79,7 +82,7 @@ namespace Experis_movie
 
             users.ForEach(user =>
             {
-                user.SplitUserPurchased().ForEach(productId =>
+                user.listOfMovieIds().ForEach(productId =>
                 {
                     products.ForEach(product =>
                     {
@@ -94,6 +97,8 @@ namespace Experis_movie
             List<Products> movieRecommendationList = moviesWithUnitsSold.Union(moviesOnlyWithHighRating).ToList();
             return movieRecommendationList;
         }
+        //The following method takes a list of Users and Products and CurrentUserSession, and returns a dictionary with movie recommendations for each User.
+
         public static Dictionary<string,List<Products>> RecommendedMoviesOnUserSession(List<Users> users, List<Products> products, List<CurrentUserSession> currentUserSession)
         {
             Dictionary<string, List<Products>> dict = new Dictionary<string,List<Products>>();
@@ -112,15 +117,16 @@ namespace Experis_movie
                     }
                     
                 });
+                
                 products.ForEach(product =>
                 {
-                    if (userSession.currentProductId.Equals(product.ProductName))
+                    if (userSession.currentProductId.Equals(product.ProductId))
                     {
                         currentProduct = product;
                         
                     }
                 });
-                
+
                 products.ForEach(product =>
                 {
                     int counter = 0;
