@@ -100,7 +100,7 @@ namespace Experis_movie
                     moviesOnlyWithHighRating.Add(products.ElementAt(y));
                 }
             }
-            //Following makes a list most purchased movies
+            //Following makes a list of most purchased movies
             users.ForEach(user =>
             {
                 //Using split method from Users to split data (loaded in as x;y;K)
@@ -112,6 +112,7 @@ namespace Experis_movie
                         if (productId.Replace(" ", "").Equals(product.ProductId))
                         {
                             moviesWithUnitsSold.Add(product);
+                            
                         }
                     });
                 });
