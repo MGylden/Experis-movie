@@ -39,7 +39,7 @@ namespace Experis_movie
         public List<string> UserPurchasedSplit { get; set; }
 
         //Method which split the values and returns as a list
-        public List<string> listOfMovieIds()
+        public List<string> listOfPurchasedMovieIds()
         {
             string[] tempArray = UserPurchased.Split(';');
             List<string> tempList = new List<string>();

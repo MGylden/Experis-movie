@@ -20,7 +20,7 @@ namespace Experis_movie
             //The following Parse our .txt to objects
             try
             {
-                users = CsvOperations.ParseCsvToUsers();
+                users = CsvOperations.ParseTxtToUsers();
                 products = CsvOperations.ParseToProducts();
                 currentUserSessions = CsvOperations.ParseToUserssession();
             }
@@ -32,15 +32,13 @@ namespace Experis_movie
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            foreach (var item in RecommendedMoviesOnUserSession)
-            {
-                Console.WriteLine(item);
-            }
+            
            
             //1.
-
+            //Prints 3 most popular movies by units sold (purchased movies)
             listOfMostPopularMovies = mostPopularMovies.mostPopularMoviesPurchased(users, products);
             Console.WriteLine("Movie recommendations based on units sold:");
+            //Take can be changed if desired to show more from the list (etc. the 5 most popular movies instead of 3)
             foreach (var item in listOfMostPopularMovies.Take(3))
             {
                 Console.WriteLine($"Movie: {item.Key}, Sold amount: {item.Value}");
@@ -48,8 +46,10 @@ namespace Experis_movie
             Console.ReadKey();
             Console.WriteLine("\n");
 
+            //Prints 3 highest rated movies descending
             listmostPopularMoviesByRating = mostPopularMovies.mostPopularMoviesByRating(products);
             Console.WriteLine("\n\nMovie recommendations based on user ratings:");
+            //Take can be changed if desired to show more from the list (etc. the 5 highest rated movies instead of 3)
             foreach (var item in listmostPopularMoviesByRating.Take(3))
             {
                 Console.WriteLine($"Movie: {item.Key}, user rating: {item.Value}");
@@ -59,6 +59,7 @@ namespace Experis_movie
             Console.WriteLine("\n");
 
             //2.
+            //Prints movie recommendations for each user.
             RecommendedMoviesOnUserSession = mostPopularMovies.RecommendedMoviesOnUserSession(users, products, currentUserSessions);
             foreach (var recommendation in RecommendedMoviesOnUserSession.Keys)
             {

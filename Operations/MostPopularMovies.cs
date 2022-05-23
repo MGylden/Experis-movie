@@ -17,7 +17,13 @@ namespace Experis_movie
 {
     internal class mostPopularMovies
     {
-        //The following method takes a list of Users and Products, and returns a dictionary based on purchases from Users.
+
+        /// <summary>
+        /// The following method takes a list of Users and Products, and returns a dictionary based on purchases from Users.
+        /// </summary>
+        /// <param name="users"></param>
+        /// <param name="products"></param>
+        /// <returns></returns>
         public static Dictionary<string, int> mostPopularMoviesPurchased(List<Users> users, List<Products> products)
         {
             Dictionary<string, int> dict = new Dictionary<string, int>();
@@ -26,10 +32,12 @@ namespace Experis_movie
             {
                 foreach (Products movie in products)
                 {
-                    foreach (string value in user.listOfMovieIds())
+                    foreach (string value in user.listOfPurchasedMovieIds())
                     {
+                        // .txt had whitespaces, replace them and equals our split list to ProductId.
                         if (value.Replace(" ", "").Equals(movie.ProductId.ToString()))
                         {
+                            //Check to see if products exist, if it does update+1, if not add to dictionary.
                             if (dict.ContainsKey(movie.ProductName))
                             {
                                 dict[movie.ProductName] = dict[movie.ProductName] + 1;
@@ -42,11 +50,16 @@ namespace Experis_movie
                     }
                 }
             }
+            //Sorts dictionary descending and converts back to dictionary
             var sortedDict = from entry in dict orderby entry.Value descending select entry;
             return dict = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
-        //The following method takes a list of Products, and returns a dictionary based on Rating.
+        /// <summary>
+        /// The following method takes a list of Products, and returns a dictionary based on Rating.
+        /// </summary>
+        /// <param name="products"></param>
+        /// <returns></returns>
         public static Dictionary<string, double> mostPopularMoviesByRating(List<Products> products)
         {
             Dictionary<string, double> dict = new Dictionary<string, double>();
@@ -62,16 +75,24 @@ namespace Experis_movie
                     dict.Add(product.ProductName, product.ProductRating);
                 }
             }
+            //Sorts dictionary descending and converts back to dictionary
             var sortedDict = from entry in dict orderby entry.Value descending select entry;
             return dict = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
-        //The following method takes a list of Users and Products, and returns a dictionary based on purchases from Users.
+
+        /// <summary>
+        /// The following method takes a list of Users and Products, and returns a list with rating >3.5 and movies that have been purchased most amount of times. 
+        /// </summary>
+        /// <param name="users"></param>
+        /// <param name="products"></param>
+        /// <returns></returns>
         public static List<Products> ListOfRecommendedMoviesByUnitsSoldAndUserReviews(List<Users> users, List<Products> products)
         { 
             List<Products> moviesOnlyWithHighRating = new List<Products>();
             List<Products> moviesWithUnitsSold = new List<Products>();
 
+            //Following makes a list containing productRating > 3.5
             for (int y = 0; y < products.Count; y++)
             {
                 if (products.ElementAt(y).ProductRating > 3.5)
@@ -79,13 +100,15 @@ namespace Experis_movie
                     moviesOnlyWithHighRating.Add(products.ElementAt(y));
                 }
             }
-
+            //Following makes a list most purchased movies
             users.ForEach(user =>
             {
-                user.listOfMovieIds().ForEach(productId =>
+                //Using split method from Users to split data (loaded in as x;y;K)
+                user.listOfPurchasedMovieIds().ForEach(productId =>
                 {
                     products.ForEach(product =>
                     {
+                        // .txt had whitespaces, replace them and equals our split list to ProductId.
                         if (productId.Replace(" ", "").Equals(product.ProductId))
                         {
                             moviesWithUnitsSold.Add(product);
@@ -93,12 +116,18 @@ namespace Experis_movie
                     });
                 });
             });
-
+            //Links list with a product rating >3.5 and movies that have been purchased the most amount of times and returns that list.
             List<Products> movieRecommendationList = moviesWithUnitsSold.Union(moviesOnlyWithHighRating).ToList();
             return movieRecommendationList;
         }
-        //The following method takes a list of Users and Products and CurrentUserSession, and returns a dictionary with movie recommendations for each User.
 
+        /// <summary>
+        /// The following method takes a list of Users and Products and CurrentUserSession, and returns a dictionary with movie recommendations for each User.
+        /// </summary>
+        /// <param name="users"></param>
+        /// <param name="products"></param>
+        /// <param name="currentUserSession"></param>
+        /// <returns></returns>
         public static Dictionary<string,List<Products>> RecommendedMoviesOnUserSession(List<Users> users, List<Products> products, List<CurrentUserSession> currentUserSession)
         {
             Dictionary<string, List<Products>> dict = new Dictionary<string,List<Products>>();
@@ -109,6 +138,7 @@ namespace Experis_movie
                 Users currentUser = new();
                 List<Products> tempProducts = new List<Products>();
 
+                //The following gets product data.
                 users.ForEach(user =>
                 {
                     if (userSession.currentUserId.Equals(user.UserId))
@@ -117,7 +147,7 @@ namespace Experis_movie
                     }
                     
                 });
-                
+                //The following gets product data.
                 products.ForEach(product =>
                 {
                     if (userSession.currentProductId.Equals(product.ProductId))
@@ -126,7 +156,7 @@ namespace Experis_movie
                         
                     }
                 });
-
+                //The following checks all keywords and adds to counter if it already exist.
                 products.ForEach(product =>
                 {
                     int counter = 0;
@@ -141,13 +171,13 @@ namespace Experis_movie
 
                         });
                     });
-
+                    //Adds movie to list if 2 or more keywords match.
                     if(counter >= 2)
                     {
                         tempProducts.Add(product);
                     }
                 });
-
+                //Add our lists to dictionary and return dictionary.
                 dict.Add(currentUser.UserName, tempProducts);
             });
             return dict;

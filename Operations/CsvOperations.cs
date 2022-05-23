@@ -14,6 +14,7 @@ namespace Experis_movie.Operations
 {
      static class CsvOperations
      {
+        //Using CSVHelper found in NuGet to import and parse to objects
         public static CsvConfiguration Config()
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -24,7 +25,11 @@ namespace Experis_movie.Operations
             return config;
         }
 
-        public static List<Users> ParseCsvToUsers()
+        /// <summary>
+        /// Parse from Users.txt and return as list
+        /// </summary>
+        /// <returns></returns>
+        public static List<Users> ParseTxtToUsers()
         {
             CsvConfiguration config = Config();
             using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\Users.txt"))
@@ -35,6 +40,10 @@ namespace Experis_movie.Operations
                 return records.ToList();
             }
         }
+        /// <summary>
+        /// Parse from Products.txt and return as list
+        /// </summary>
+        /// <returns></returns>
         public static List<Products> ParseToProducts()
         {
             CsvConfiguration config = Config();
@@ -46,6 +55,10 @@ namespace Experis_movie.Operations
             }
 
         }
+        /// <summary>
+        /// Parse from UsersSession.txt and return as list
+        /// </summary>
+        /// <returns></returns>
         public static List<CurrentUserSession> ParseToUserssession()
         {
             CsvConfiguration config = Config();
