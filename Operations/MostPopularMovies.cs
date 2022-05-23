@@ -34,7 +34,7 @@ namespace Experis_movie
                 {
                     foreach (string value in user.listOfPurchasedMovieIds())
                     {
-                        // .txt had whitespaces, replace them and equals our split list to ProductId.
+                        // .txt had whitespaces, replace them and equals our split purchased list to ProductId.
                         if (value.Replace(" ", "").Equals(movie.ProductId.ToString()))
                         {
                             //Check to see if products exist, if it does update+1, if not add to dictionary.
@@ -87,7 +87,7 @@ namespace Experis_movie
         /// <param name="users"></param>
         /// <param name="products"></param>
         /// <returns></returns>
-        public static List<Products> ListOfRecommendedMoviesByUnitsSoldAndUserReviews(List<Users> users, List<Products> products)
+        public static List<Products> listOfRecommendedMoviesByMostPurchasedAndUserReviews(List<Users> users, List<Products> products)
         { 
             List<Products> moviesOnlyWithHighRating = new List<Products>();
             List<Products> moviesWithUnitsSold = new List<Products>();
@@ -129,7 +129,7 @@ namespace Experis_movie
         /// <param name="products"></param>
         /// <param name="currentUserSession"></param>
         /// <returns></returns>
-        public static Dictionary<string,List<Products>> RecommendedMoviesOnUserSession(List<Users> users, List<Products> products, List<CurrentUserSession> currentUserSession)
+        public static Dictionary<string,List<Products>> recommendedMoviesOnUserSession(List<Users> users, List<Products> products, List<CurrentUserSession> currentUserSession)
         {
             Dictionary<string, List<Products>> dict = new Dictionary<string,List<Products>>();
 
