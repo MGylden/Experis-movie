@@ -12,9 +12,6 @@ namespace Experis_movie
 {
     public class Products
     {
-
-
-
         public Products(int id, string name, int year, string keyword1, string keyword2, string keyword3, string keyword4, string keyword5, double rating, double price)
         {
             this.ProductId = Convert.ToInt32(id);
@@ -28,6 +25,7 @@ namespace Experis_movie
             this.ProductRating = Convert.ToDouble(rating);
             this.ProductPrice = Convert.ToDouble(price);
         }
+
         [Index(0)]
         public int ProductId { get; set; }
         [Index(1)]
@@ -61,14 +59,10 @@ namespace Experis_movie
             if (!string.IsNullOrWhiteSpace(this.ProductKeyword5)) genres.Add(this.ProductKeyword5);
 
             return genres;
-
-
         }
 
         public Products()
-        {
-
-        }
+        {}
     }
  
 }

@@ -22,10 +22,6 @@ namespace Experis_movie
             this.UserViewed = viewed;
             this.UserPurchased = purchased;
         }
-        public Users()
-        {
-
-        }
 
         [Index(0)]
         public int UserId { get; set; }
@@ -37,6 +33,9 @@ namespace Experis_movie
         public string UserPurchased { get; set; }
 
         public List<string> UserPurchasedSplit { get; set; }
+
+        public Users()
+            {}
 
         //Method which split the values and returns as a list
         public List<string> listOfPurchasedMovieIds()
@@ -50,6 +49,5 @@ namespace Experis_movie
             }
             return tempList;
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace Experis_movie
         public static void Main(string[] args)
         {
             //Initialize Variables
-           List<Products> products = new List<Products>();
+            List<Products> products = new List<Products>();
             List<Users> users = new List<Users>();
             List<CurrentUserSession> currentUserSessions = new List<CurrentUserSession>();
             Dictionary<string, int> listOfMostPopularMovies = new();
@@ -32,7 +32,6 @@ namespace Experis_movie
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            
            
             //1.
             //Prints 3 most popular movies by units sold (purchased movies)
@@ -55,7 +54,6 @@ namespace Experis_movie
                 Console.WriteLine($"Title: {item.Key}. \t " +
                                   $"User rating: {item.Value}");
             }
-
             Console.ReadKey();
             Console.WriteLine("\n");
 
@@ -67,7 +65,6 @@ namespace Experis_movie
                 Console.WriteLine($"Title: {item.ProductName}. \t " +
                                   $"User Rating: {item.ProductRating}");
             }
-
             Console.ReadKey();
             Console.WriteLine("\n");
 
@@ -85,7 +82,5 @@ namespace Experis_movie
             }
             Console.ReadKey();
         }
-
-
     }
 }

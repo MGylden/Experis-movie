@@ -43,7 +43,7 @@ namespace Experis_movie
                                 dict[movie.ProductName] = dict[movie.ProductName] + 1;
                             }
                             else
-                            {
+                            { 
                                 dict.Add(movie.ProductName, 1);
                             }
                         }
@@ -80,7 +80,6 @@ namespace Experis_movie
             return dict = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
-
         /// <summary>
         /// The following method takes a list of Users and Products, and returns a list with rating >3.5 and movies that have been purchased most amount of times. 
         /// </summary>
@@ -112,7 +111,6 @@ namespace Experis_movie
                         if (productId.Replace(" ", "").Equals(product.ProductId))
                         {
                             moviesWithUnitsSold.Add(product);
-                            
                         }
                     });
                 });
@@ -146,7 +144,6 @@ namespace Experis_movie
                     {
                         currentUser = user;
                     }
-                    
                 });
                 //The following gets product data.
                 products.ForEach(product =>
@@ -154,7 +151,6 @@ namespace Experis_movie
                     if (userSession.currentProductId.Equals(product.ProductId))
                     {
                         currentProduct = product;
-                        
                     }
                 });
                 //The following checks all keywords and adds to counter if it already exist.
@@ -169,7 +165,6 @@ namespace Experis_movie
                             {
                                counter++; 
                             }
-
                         });
                     });
                     //Adds movie to list if 2 or more keywords match.
@@ -184,6 +179,5 @@ namespace Experis_movie
             return dict;
         }
     }
-
 }
 

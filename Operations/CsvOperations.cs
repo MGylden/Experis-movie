@@ -32,7 +32,8 @@ namespace Experis_movie.Operations
         public static List<Users> ParseTxtToUsers()
         {
             CsvConfiguration config = Config();
-            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\Users.txt"))
+            //Change path before using program -- Users.txt
+            using (var reader = new StreamReader(@"C:\Users\Mathi\Documents\GitHub\Experis-movie\Resources\Users.txt"))
 
             using (var csv = new CsvReader(reader, config))
             {
@@ -40,6 +41,7 @@ namespace Experis_movie.Operations
                 return records.ToList();
             }
         }
+
         /// <summary>
         /// Parse from Products.txt and return as list
         /// </summary>
@@ -47,14 +49,15 @@ namespace Experis_movie.Operations
         public static List<Products> ParseToProducts()
         {
             CsvConfiguration config = Config();
-            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\Products.txt"))
+            //Change path before using program -- Products.txt
+            using (var reader = new StreamReader(@"C:\Users\Mathi\Documents\GitHub\Experis-movie\Resources\Products.txt"))
             using (var csv = new CsvReader(reader, config))
             {
                 var records = csv.GetRecords<Products>();
                 return records.ToList();
             }
-
         }
+
         /// <summary>
         /// Parse from UsersSession.txt and return as list
         /// </summary>
@@ -62,15 +65,13 @@ namespace Experis_movie.Operations
         public static List<CurrentUserSession> ParseToUserssession()
         {
             CsvConfiguration config = Config();
-            using (var reader = new StreamReader(@"C:\Users\Mathi\source\repos\rigtige\Experis movie\Resources\CurrentUserSession.txt"))
+            //Change path before using program -- CurrentUserSession.txt
+            using (var reader = new StreamReader(@"C:\Users\Mathi\Documents\GitHub\Experis-movie\Resources\CurrentUserSession.txt"))
             using (var csv = new CsvReader(reader, config))
             {
                 var records = csv.GetRecords<CurrentUserSession>();
                 return records.ToList();
             }
-
         }
-
-
     }
 }
